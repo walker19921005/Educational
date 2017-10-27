@@ -1,12 +1,14 @@
 package com.cjrj.edu.entity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.cjrj.edu.entity.vo.MenuVO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @TableName("T_USER")
 public class User implements Serializable {

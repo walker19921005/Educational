@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -45,16 +46,16 @@
                         IN+
                     </div>
                 </li>
+                <c:forEach items="${menu}" var="tree">
                 <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <a href="${tree.menuUrl}"><i class="fa fa-th-large"></i> <span class="nav-label">${tree.menuName}</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                        <c:forEach items="${tree.tree}" var="menu">
+                        <li><a href="${menu.menuUrl}">${menu.menuName}</a></li>
+                        </c:forEach>
                     </ul>
                 </li>
+                </c:forEach>
             </ul>
 
         </div>

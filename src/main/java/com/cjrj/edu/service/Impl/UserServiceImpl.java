@@ -19,4 +19,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
     public User findByUsername(String username) {
         return userMapper.findByUsername(username);
     }
+
+    @Override
+    public int insertSelective(User record) {
+        return userMapper.insertSelective(record);
+    }
 }
