@@ -1,4 +1,4 @@
-<?com.cjrj.edu.mapper.xml version="1.0" encoding="UTF-8"?>
+<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
@@ -11,7 +11,7 @@
 
     <context-param>
         <param-name>log4jConfiguration</param-name>
-        <param-value>classpath:log4j2.xml</param-value>
+        <param-value>classpath:log4j2.com.cjrj.edu.xml</param-value>
     </context-param>
 
     <!-- 编码过滤器 -->
@@ -70,7 +70,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!-- 检测开发环境，/druid/index.html -->
@@ -111,6 +111,6 @@
     </error-page>
 
     <welcome-file-list>
-        <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

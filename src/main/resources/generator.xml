@@ -32,7 +32,7 @@
         </javaModelGenerator>
 
         <!-- !!!! Mapper XML Configurations !!!! -->
-        <sqlMapGenerator targetPackage="com.cjrj.edu.mapper.xml" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.cjrj.edu.xml" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 

@@ -1,15 +1,15 @@
 package com.cjrj.edu.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.Role;
 import java.math.BigDecimal;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
+import java.util.Set;
 
-public interface RoleMapper {
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RoleMapper extends BaseMapper<Role> {
     @Delete({
         "delete from T_ROLE",
         "where ROLE_ID = #{roleId,jdbcType=DECIMAL}"
@@ -59,4 +59,15 @@ public interface RoleMapper {
         "where ROLE_ID = #{roleId,jdbcType=DECIMAL}"
     })
     int updateByPrimaryKey(Role record);
+
+    @Select({
+            "SELECT ",
+            "ROLE_ID, ROLE_NAME, ROLE_DESC, PARENTID, CREATEDATE, CREATENAME, MODIFYDATE, ",
+            "MODIFYNAME, DEL_FLAG, ENABLE",
+            "from T_ROLE r",
+            "LEFT JOIN T_ROLE_USER ru",
+            "ON r.ROLE_ID = ru.ROLEID",
+            "where ru.USERID= = #{username}"
+    })
+    Set<Role> findRoles(@Param("username") String username);
 }

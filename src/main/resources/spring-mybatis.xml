@@ -1,15 +1,12 @@
-<?com.cjrj.edu.mapper.xml version="1.0" encoding="UTF-8"?>
+<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 自动扫描 -->
     <context:component-scan base-package="com.cjrj.edu"/>
     <!-- 引入配置文件 -->
@@ -64,7 +61,7 @@
         <property name="typeAliasesPackage" value="com.cjrj.entity;com.cjrj.edu.entity.vo"/>
         <property name="configLocation" value="classpath:mabits-config.xml"/>
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
-        <property name="mapperLocations" value="classpath:com/cjrj/edu/mapper/xml/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath:xml/*Mapper.xml"/>
         <property name="plugins">
             <array>
                 <!--分页插件配置-->
@@ -96,7 +93,7 @@
     <!--JDBC事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!-- 注入数据库连接池 -->
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <tx:annotation-driven></tx:annotation-driven>

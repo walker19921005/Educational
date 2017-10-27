@@ -1,15 +1,20 @@
 package com.cjrj.edu.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.Menu;
 import java.math.BigDecimal;
+import java.util.Set;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
-public interface MenuMapper {
+@Repository
+public interface MenuMapper extends BaseMapper<Menu> {
     @Delete({
         "delete from T_MENU",
         "where MENU_ID = #{menuId,jdbcType=DECIMAL}"
@@ -31,7 +36,7 @@ public interface MenuMapper {
         "#{modifyname,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL})"
     })
     @SelectKey(statement="select menu_seq.nextval from dual", keyProperty="menuId", before=true, resultType=BigDecimal.class)
-    int insert(Menu record);
+    int insertMenu(Menu record);
 
     int insertSelective(Menu record);
 
@@ -63,4 +68,16 @@ public interface MenuMapper {
         "where MENU_ID = #{menuId,jdbcType=DECIMAL}"
     })
     int updateByPrimaryKey(Menu record);
+
+    @Select({
+            "SELECT ",
+            "m.MENU_ID, m.MENU_NAME, m.PARENTID, m.SEQUENCES, m.MENU_ICON, m.MENU_URL, m.ENABLE, m.CREATEDATE, ",
+            "m.CREATENAME, m.MODIFYDATE, m.MODIFYNAME, m.DEL_FLAG",
+            "from T_MENU m",
+            "LEFT JOIN T_ROLE_MENU rm ON m.MENU_ID = rm.MENUID",
+            "LEFT JOIN T_ROLE r ON rm.ROLEID = r.ROLE_ID ",
+            "LEFT JOIN T_ROLE_USER ru ON r.ROLE_ID = ru.ROLEID",
+            "LEFT JOIN T_USER u ON ru.USERID = (SELECT u.USER_ID FROM T_USER WHERE u.USERNAME=#{username})"
+    })
+    Set<Menu> findMenus(String username);
 }

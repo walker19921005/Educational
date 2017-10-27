@@ -1,15 +1,14 @@
 package com.cjrj.edu.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.User;
 import java.math.BigDecimal;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
 
-public interface UserMapper {
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserMapper extends BaseMapper<User> {
     @Delete({
         "delete from T_USER",
         "where USER_ID = #{userId,jdbcType=DECIMAL}"
@@ -63,4 +62,13 @@ public interface UserMapper {
         "where USER_ID = #{userId,jdbcType=DECIMAL}"
     })
     int updateByPrimaryKey(User record);
+
+    @Select({
+            "SELECT",
+            "USER_ID, USERNAME, PASSWORD, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, ",
+            "DEL_FLAG, EMAIL, DEPTID, SALT, LOCKED",
+            "from T_USER",
+            "where USERNAME = #{username}"
+    })
+    User findByUsername(@Param("username") String username);
 }

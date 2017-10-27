@@ -1,9 +1,14 @@
 package com.cjrj.edu.entity;
 
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@TableName("T_USER")
 public class User implements Serializable {
     private BigDecimal userId;
 
@@ -11,10 +16,12 @@ public class User implements Serializable {
 
     private String password;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
     private String createname;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifydate;
 
     private String modifyname;
@@ -59,6 +66,7 @@ public class User implements Serializable {
         return createdate;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
@@ -71,6 +79,7 @@ public class User implements Serializable {
         this.createname = createname == null ? null : createname.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getModifydate() {
         return modifydate;
     }
