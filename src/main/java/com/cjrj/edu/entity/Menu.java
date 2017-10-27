@@ -11,7 +11,7 @@ public class Menu implements Serializable {
 
     private BigDecimal parentid;
 
-    private BigDecimal menuSeq;
+    private BigDecimal sequences;
 
     private String menuIcon;
 
@@ -55,12 +55,12 @@ public class Menu implements Serializable {
         this.parentid = parentid;
     }
 
-    public BigDecimal getMenuSeq() {
-        return menuSeq;
+    public BigDecimal getSequences() {
+        return sequences;
     }
 
-    public void setMenuSeq(BigDecimal menuSeq) {
-        this.menuSeq = menuSeq;
+    public void setSequences(BigDecimal sequences) {
+        this.sequences = sequences;
     }
 
     public String getMenuIcon() {

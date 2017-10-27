@@ -5,7 +5,7 @@
     <id column="MENU_ID" jdbcType="DECIMAL" property="menuId" />
     <result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
     <result column="PARENTID" jdbcType="DECIMAL" property="parentid" />
-    <result column="MENU_SEQ" jdbcType="DECIMAL" property="menuSeq" />
+    <result column="SEQUENCES" jdbcType="DECIMAL" property="sequences" />
     <result column="MENU_ICON" jdbcType="VARCHAR" property="menuIcon" />
     <result column="MENU_URL" jdbcType="VARCHAR" property="menuUrl" />
     <result column="ENABLE" jdbcType="DECIMAL" property="enable" />
@@ -16,7 +16,7 @@
     <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
   </resultMap>
   <sql id="Base_Column_List">
-    MENU_ID, MENU_NAME, PARENTID, MENU_SEQ, MENU_ICON, MENU_URL, ENABLE, CREATEDATE, 
+    MENU_ID, MENU_NAME, PARENTID, SEQUENCES, MENU_ICON, MENU_URL, ENABLE, CREATEDATE, 
     CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG
   </sql>
   <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Menu">
@@ -32,8 +32,8 @@
       <if test="parentid != null">
         PARENTID,
       </if>
-      <if test="menuSeq != null">
-        MENU_SEQ,
+      <if test="sequences != null">
+        SEQUENCES,
       </if>
       <if test="menuIcon != null">
         MENU_ICON,
@@ -68,8 +68,8 @@
       <if test="parentid != null">
         #{parentid,jdbcType=DECIMAL},
       </if>
-      <if test="menuSeq != null">
-        #{menuSeq,jdbcType=DECIMAL},
+      <if test="sequences != null">
+        #{sequences,jdbcType=DECIMAL},
       </if>
       <if test="menuIcon != null">
         #{menuIcon,jdbcType=VARCHAR},
@@ -106,8 +106,8 @@
       <if test="parentid != null">
         PARENTID = #{parentid,jdbcType=DECIMAL},
       </if>
-      <if test="menuSeq != null">
-        MENU_SEQ = #{menuSeq,jdbcType=DECIMAL},
+      <if test="sequences != null">
+        SEQUENCES = #{sequences,jdbcType=DECIMAL},
       </if>
       <if test="menuIcon != null">
         MENU_ICON = #{menuIcon,jdbcType=VARCHAR},

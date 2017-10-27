@@ -18,26 +18,26 @@ public interface MenuMapper {
 
     @Insert({
         "insert into T_MENU (MENU_ID, MENU_NAME, ",
-        "PARENTID, MENU_SEQ, ",
+        "PARENTID, SEQUENCES, ",
         "MENU_ICON, MENU_URL, ",
         "ENABLE, CREATEDATE, ",
         "CREATENAME, MODIFYDATE, ",
         "MODIFYNAME, DEL_FLAG)",
         "values (#{menuId,jdbcType=DECIMAL}, #{menuName,jdbcType=VARCHAR}, ",
-        "#{parentid,jdbcType=DECIMAL}, #{menuSeq,jdbcType=DECIMAL}, ",
+        "#{parentid,jdbcType=DECIMAL}, #{sequences,jdbcType=DECIMAL}, ",
         "#{menuIcon,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, ",
         "#{enable,jdbcType=DECIMAL}, #{createdate,jdbcType=TIMESTAMP}, ",
         "#{createname,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, ",
         "#{modifyname,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL})"
     })
     @SelectKey(statement="select menu_seq.nextval from dual", keyProperty="menuId", before=true, resultType=BigDecimal.class)
-    int insertMenu(Menu record);
+    int insert(Menu record);
 
     int insertSelective(Menu record);
 
     @Select({
         "select",
-        "MENU_ID, MENU_NAME, PARENTID, MENU_SEQ, MENU_ICON, MENU_URL, ENABLE, CREATEDATE, ",
+        "MENU_ID, MENU_NAME, PARENTID, SEQUENCES, MENU_ICON, MENU_URL, ENABLE, CREATEDATE, ",
         "CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG",
         "from T_MENU",
         "where MENU_ID = #{menuId,jdbcType=DECIMAL}"
@@ -51,7 +51,7 @@ public interface MenuMapper {
         "update T_MENU",
         "set MENU_NAME = #{menuName,jdbcType=VARCHAR},",
           "PARENTID = #{parentid,jdbcType=DECIMAL},",
-          "MENU_SEQ = #{menuSeq,jdbcType=DECIMAL},",
+          "SEQUENCES = #{sequences,jdbcType=DECIMAL},",
           "MENU_ICON = #{menuIcon,jdbcType=VARCHAR},",
           "MENU_URL = #{menuUrl,jdbcType=VARCHAR},",
           "ENABLE = #{enable,jdbcType=DECIMAL},",
