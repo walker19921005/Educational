@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjrj.edu.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Teacher">
+    <id column="TEACH_ID" jdbcType="DECIMAL" property="teachId" />
+    <result column="USERID" jdbcType="DECIMAL" property="userid" />
+    <result column="TEACH_NAME" jdbcType="VARCHAR" property="teachName" />
+    <result column="TEACH_AGE" jdbcType="DECIMAL" property="teachAge" />
+    <result column="SEX" jdbcType="DECIMAL" property="sex" />
+    <result column="TEACH_ADDRESS" jdbcType="VARCHAR" property="teachAddress" />
+    <result column="TEACH_IPHONE" jdbcType="VARCHAR" property="teachIphone" />
+    <result column="TEACH_DESC" jdbcType="VARCHAR" property="teachDesc" />
+    <result column="ENTRYDATE" jdbcType="TIMESTAMP" property="entrydate" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYNAME" jdbcType="VARCHAR" property="modifyname" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="TEACH_BIRTHDAY" jdbcType="TIMESTAMP" property="teachBirthday" />
+    <result column="ICON" jdbcType="VARCHAR" property="icon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TEACH_ID, USERID, TEACH_NAME, TEACH_AGE, SEX, TEACH_ADDRESS, TEACH_IPHONE, TEACH_DESC, 
+    ENTRYDATE, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG, TEACH_BIRTHDAY, 
+    ICON
+  </sql>
+  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Teacher">
+    <selectKey keyProperty="teachId" order="BEFORE" resultType="java.math.BigDecimal">
+      select teacher_seq.nextval from dual
+    </selectKey>
+    insert into USER_TEACHER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      TEACH_ID,
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="teachName != null">
+        TEACH_NAME,
+      </if>
+      <if test="teachAge != null">
+        TEACH_AGE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="teachAddress != null">
+        TEACH_ADDRESS,
+      </if>
+      <if test="teachIphone != null">
+        TEACH_IPHONE,
+      </if>
+      <if test="teachDesc != null">
+        TEACH_DESC,
+      </if>
+      <if test="entrydate != null">
+        ENTRYDATE,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="teachBirthday != null">
+        TEACH_BIRTHDAY,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{teachId,jdbcType=DECIMAL},
+      <if test="userid != null">
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="teachName != null">
+        #{teachName,jdbcType=VARCHAR},
+      </if>
+      <if test="teachAge != null">
+        #{teachAge,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="teachAddress != null">
+        #{teachAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teachIphone != null">
+        #{teachIphone,jdbcType=VARCHAR},
+      </if>
+      <if test="teachDesc != null">
+        #{teachDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrydate != null">
+        #{entrydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="teachBirthday != null">
+        #{teachBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Teacher">
+    update USER_TEACHER
+    <set>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="teachName != null">
+        TEACH_NAME = #{teachName,jdbcType=VARCHAR},
+      </if>
+      <if test="teachAge != null">
+        TEACH_AGE = #{teachAge,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="teachAddress != null">
+        TEACH_ADDRESS = #{teachAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teachIphone != null">
+        TEACH_IPHONE = #{teachIphone,jdbcType=VARCHAR},
+      </if>
+      <if test="teachDesc != null">
+        TEACH_DESC = #{teachDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="entrydate != null">
+        ENTRYDATE = #{entrydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME = #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="teachBirthday != null">
+        TEACH_BIRTHDAY = #{teachBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TEACH_ID = #{teachId,jdbcType=DECIMAL}
+  </update>
+</mapper>

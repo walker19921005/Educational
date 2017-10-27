@@ -1,0 +1,81 @@
+<?mappers version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <classPathEntry location="/Users/excalibur/Downloads/Dev/JARS/DBDriver/ojdbc6-12.1.0.2.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="utf-8"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@//10.211.55.4:1521/orcl"
+                        userId="eduManager" password="123456"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- !!!! Model Configurations !!!! -->
+        <javaModelGenerator targetPackage="com.cjrj.edu.entity" targetProject="src/main/java/">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="immutable" value="false"/>
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="com.cjrj.edu.mapper.xml" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <javaClientGenerator targetPackage="com.cjrj.edu.mapper" targetProject="src/main/java" type="MIXEDMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- !!!! Table Configurations !!!! -->
+        <table tableName="T_USER" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="User">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="user_id" sqlStatement="select user_seq.nextval from dual"/>
+        </table>
+        <table tableName="T_role" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Role">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="role_id" sqlStatement="select role_seq.nextval from dual"/>
+        </table>
+        <table tableName="T_menu" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Menu">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="menu_id" sqlStatement="select menu_seq.nextval from dual"/>
+        </table>
+        <table tableName="T_role_menu" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Role_Menu">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="id" sqlStatement="select user_seq.nextval from dual"/>
+        </table>
+        <table tableName="T_role_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Role_User">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="id" sqlStatement="select user_seq.nextval from dual"/>
+        </table>
+        <table tableName="USER_student" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Student">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="stu_id" sqlStatement="select student_seq.nextval from dual"/>
+        </table>
+        <table tableName="USER_teacher" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Teacher">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="teach_id" sqlStatement="select teacher_seq.nextval from dual"/>
+        </table>
+    </context>
+</generatorConfiguration>

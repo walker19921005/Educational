@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjrj.edu.mapper.Role_UserMapper">
+  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Role_User">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ROLEID" jdbcType="DECIMAL" property="roleid" />
+    <result column="USERID" jdbcType="DECIMAL" property="userid" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYNAME" jdbcType="VARCHAR" property="modifyname" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLEID, USERID, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG
+  </sql>
+  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Role_User">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.math.BigDecimal">
+      select user_seq.nextval from dual
+    </selectKey>
+    insert into T_ROLE_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      ID,
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=DECIMAL},
+      <if test="roleid != null">
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Role_User">
+    update T_ROLE_USER
+    <set>
+      <if test="roleid != null">
+        ROLEID = #{roleid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME = #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

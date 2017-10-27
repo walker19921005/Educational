@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjrj.edu.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Menu">
+    <id column="MENU_ID" jdbcType="DECIMAL" property="menuId" />
+    <result column="MENU_NAME" jdbcType="VARCHAR" property="menuName" />
+    <result column="PARENTID" jdbcType="DECIMAL" property="parentid" />
+    <result column="MENU_SEQ" jdbcType="DECIMAL" property="menuSeq" />
+    <result column="MENU_ICON" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="MENU_URL" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="ENABLE" jdbcType="DECIMAL" property="enable" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="MODIFYNAME" jdbcType="VARCHAR" property="modifyname" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MENU_ID, MENU_NAME, PARENTID, MENU_SEQ, MENU_ICON, MENU_URL, ENABLE, CREATEDATE, 
+    CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG
+  </sql>
+  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Menu">
+    <selectKey keyProperty="menuId" order="BEFORE" resultType="java.math.BigDecimal">
+      select menu_seq.nextval from dual
+    </selectKey>
+    insert into T_MENU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      MENU_ID,
+      <if test="menuName != null">
+        MENU_NAME,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="menuSeq != null">
+        MENU_SEQ,
+      </if>
+      <if test="menuIcon != null">
+        MENU_ICON,
+      </if>
+      <if test="menuUrl != null">
+        MENU_URL,
+      </if>
+      <if test="enable != null">
+        ENABLE,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{menuId,jdbcType=DECIMAL},
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="menuSeq != null">
+        #{menuSeq,jdbcType=DECIMAL},
+      </if>
+      <if test="menuIcon != null">
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Menu">
+    update T_MENU
+    <set>
+      <if test="menuName != null">
+        MENU_NAME = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="menuSeq != null">
+        MENU_SEQ = #{menuSeq,jdbcType=DECIMAL},
+      </if>
+      <if test="menuIcon != null">
+        MENU_ICON = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        MENU_URL = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        ENABLE = #{enable,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME = #{modifyname,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where MENU_ID = #{menuId,jdbcType=DECIMAL}
+  </update>
+</mapper>

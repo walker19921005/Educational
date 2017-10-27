@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--
+    1. 配置securityManager，也就是shiro的核心。
+     -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--<property name="realm" ref="myRealm" />-->
+        <!-- 缓存管理器 -->
+        <!-- cacheManager -->
+        <property name="cacheManager" ref="cacheManager" />
+        <!-- sessionManager -->
+        <property name="sessionManager" ref="sessionManager" />
+    </bean>
+    <!--
+    2. 配置cacheManager(缓存管理)
+     -->
+<!--    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager">
+    </bean>-->
+    <!--
+    3. 配置Realm，自己定义的shiroRealm，必须实现org.apache.shiro.realm.Realm这个接口
+     -->
+    <!--<bean id="myRealm" class="maven.spring.shiro.realms.ShiroRealm">
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>-->
+    <!--
+    4.配置lifecycleBeanPostProcessor， 可以自动的来调用配置在spring IOC 容器中shiro bean的生命周期方法 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+    <!--
+    5.启用IOC容器中使用shiro的注解，但必须在配置 lifecycleBeanPostProcessor才可以使用-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+            depends-on="lifecycleBeanPostProcessor" />
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    <!--
+    6. 配置shiroFilter
+    6.1 id必须和web.xml 文件中配置的DelegatingFilterProxy的filter-name一致
+     -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login.jsp" />
+        <property name="successUrl" value="/views/index.jsp" />
+        <property name="unauthorizedUrl" value="/views/error/illegalAccess.html" />
+        <!-- 配置哪些页面需要受保护
+            以及访问这些页面需要的权限
+            anon可以被匿名访问，或者说游客可以访问
+            authc 必须认证之后才能访问，即登录后才能访问的页面
+         -->
+        <property name="filterChainDefinitions">
+            <value>
+                /static/** = anon
+                /views/error/** = anon
+                /views/login = anon
+                <!--/index = anon-->
+                /views/** = authc
+            </value>
+        </property>
+
+    </bean>
+
+    <!-- shiro redisManager -->
+    <bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+        <property name="host" value="127.0.0.1"/>
+        <property name="port" value="6379"/>
+        <property name="expire" value="1800"/>
+        <property name="password" value="123456"/>
+        <!-- optional properties:
+        <property name="timeout" value="10000"/>
+        <property name="password" value="123456"/>
+        -->
+    </bean>
+
+    <!-- redisSessionDAO -->
+    <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+        <property name="redisManager" ref="redisManager" />
+    </bean>
+
+    <!-- sessionManager -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="redisSessionDAO" />
+    </bean>
+
+    <!-- cacheManager -->
+    <bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
+        <property name="redisManager" ref="redisManager" />
+    </bean>
+
+    <!-- 启用shrio授权注解拦截方式  -->
+    <aop:config proxy-target-class="true"></aop:config>
+
+    <!-- 注解支持 -->
+    <context:annotation-config />
+
+    <bean id="hashedCredentialsMatcher"
+          class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5" />
+        <property name="storedCredentialsHexEncoded" value="true" />
+        <property name="hashIterations" value="2" />
+    </bean>
+</beans>
