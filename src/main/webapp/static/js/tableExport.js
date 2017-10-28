@@ -94,7 +94,7 @@
         tfootSelector:     'tr',          // set empty ('') to prevent export of tfoot rows
         theadSelector:     'tr',
         tableName:         'myTableName',
-        type:              'csv',         // 'csv', 'tsv', 'txt', 'sql', 'json', 'xml', 'excel', 'doc', 'png' or 'pdf'
+        type:              'csv',         // 'csv', 'tsv', 'txt', 'sql', 'json', 'com.cjrj.edu.xml', 'excel', 'doc', 'png' or 'pdf'
         worksheetName:     'Worksheet'
       };
 
@@ -338,7 +338,7 @@
       } else if ( defaults.type === 'xml' ) {
 
         rowIndex = 0;
-        var xml  = '<?xml version="1.0" encoding="utf-8"?>';
+        var xml  = '<?com.cjrj.edu.xml version="1.0" encoding="utf-8"?>';
         xml += '<tabledata><fields>';
 
         // Header
@@ -388,12 +388,12 @@
           return base64encode(xml);
 
         try {
-          blob = new Blob([xml], {type: "application/xml;charset=utf-8"});
+          blob = new Blob([xml], {type: "application/com.cjrj.edu.xml;charset=utf-8"});
           saveAs(blob, defaults.fileName + '.xml');
         }
         catch (e) {
           downloadFile(defaults.fileName + '.xml',
-            'data:application/xml;charset=utf-8;base64,',
+            'data:application/com.cjrj.edu.xml;charset=utf-8;base64,',
             xml);
         }
       }
@@ -479,7 +479,7 @@
         });
 
         var CreationDate = new Date().toISOString();
-        var xmlssDocFile = '<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?> ' +
+        var xmlssDocFile = '<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?> ' +
                             '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
                                       'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
                                       'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
@@ -537,12 +537,12 @@
           return base64encode(xmlssDocFile);
 
         try {
-          blob = new Blob([xmlssDocFile], {type: "application/xml;charset=utf-8"});
+          blob = new Blob([xmlssDocFile], {type: "application/com.cjrj.edu.xml;charset=utf-8"});
           saveAs(blob, defaults.fileName + '.xml');
         }
         catch (e) {
           downloadFile(defaults.fileName + '.xml',
-            'data:application/xml;charset=utf-8;base64,',
+            'data:application/com.cjrj.edu.xml;charset=utf-8;base64,',
             xmlssDocFile);
         }
       }
@@ -667,7 +667,7 @@
         docFile += "<head>";
         if ( MSDocType === 'excel' ) {
           docFile += "<!--[if gte mso 9]>";
-          docFile += "<xml>";
+          docFile += "<com.cjrj.edu.xml>";
           docFile += "<x:ExcelWorkbook>";
           docFile += "<x:ExcelWorksheets>";
           docFile += "<x:ExcelWorksheet>";
@@ -680,7 +680,7 @@
           docFile += "</x:ExcelWorksheet>";
           docFile += "</x:ExcelWorksheets>";
           docFile += "</x:ExcelWorkbook>";
-          docFile += "</xml>";
+          docFile += "</com.cjrj.edu.xml>";
           docFile += "<![endif]-->";
         }
         docFile += "<style>br {mso-data-placement:same-cell;}</style>";

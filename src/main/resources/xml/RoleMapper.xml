@@ -1,31 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cjrj.edu.mapper.Role_UserMapper">
-  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Role_User">
-    <id column="ID" jdbcType="DECIMAL" property="id" />
-    <result column="ROLEID" jdbcType="DECIMAL" property="roleid" />
-    <result column="USERID" jdbcType="DECIMAL" property="userid" />
+<mapper namespace="com.cjrj.edu.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Role">
+    <id column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="ROLE_DESC" jdbcType="VARCHAR" property="roleDesc" />
+    <result column="PARENTID" jdbcType="DECIMAL" property="parentid" />
     <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
     <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
     <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
     <result column="MODIFYNAME" jdbcType="VARCHAR" property="modifyname" />
     <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="ENABLE" jdbcType="DECIMAL" property="enable" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, ROLEID, USERID, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, DEL_FLAG
+    ROLE_ID, ROLE_NAME, ROLE_DESC, PARENTID, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, 
+    DEL_FLAG, ENABLE
   </sql>
-  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Role_User">
-    <selectKey keyProperty="id" order="BEFORE" resultType="java.math.BigDecimal">
-      select user_seq.nextval from dual
+  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Role">
+    <selectKey keyProperty="roleId" order="BEFORE" resultType="java.math.BigDecimal">
+      select role_seq.nextval from dual
     </selectKey>
-    insert into T_ROLE_USER
+    insert into T_ROLE
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      ID,
-      <if test="roleid != null">
-        ROLEID,
+      ROLE_ID,
+      <if test="roleName != null">
+        ROLE_NAME,
       </if>
-      <if test="userid != null">
-        USERID,
+      <if test="roleDesc != null">
+        ROLE_DESC,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
       </if>
       <if test="createdate != null">
         CREATEDATE,
@@ -42,14 +48,20 @@
       <if test="delFlag != null">
         DEL_FLAG,
       </if>
+      <if test="enable != null">
+        ENABLE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      #{id,jdbcType=DECIMAL},
-      <if test="roleid != null">
-        #{roleid,jdbcType=DECIMAL},
+      #{roleId,jdbcType=DECIMAL},
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=DECIMAL},
+      <if test="roleDesc != null">
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=DECIMAL},
       </if>
       <if test="createdate != null">
         #{createdate,jdbcType=TIMESTAMP},
@@ -66,16 +78,22 @@
       <if test="delFlag != null">
         #{delFlag,jdbcType=DECIMAL},
       </if>
+      <if test="enable != null">
+        #{enable,jdbcType=DECIMAL},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Role_User">
-    update T_ROLE_USER
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Role">
+    update T_ROLE
     <set>
-      <if test="roleid != null">
-        ROLEID = #{roleid,jdbcType=DECIMAL},
+      <if test="roleName != null">
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        USERID = #{userid,jdbcType=DECIMAL},
+      <if test="roleDesc != null">
+        ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=DECIMAL},
       </if>
       <if test="createdate != null">
         CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
@@ -92,7 +110,10 @@
       <if test="delFlag != null">
         DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
       </if>
+      <if test="enable != null">
+        ENABLE = #{enable,jdbcType=DECIMAL},
+      </if>
     </set>
-    where ID = #{id,jdbcType=DECIMAL}
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
   </update>
 </mapper>

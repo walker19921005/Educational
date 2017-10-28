@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
@@ -8,24 +8,23 @@
     1. 配置securityManager，也就是shiro的核心。
      -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--<property name="realm" ref="myRealm" />-->
+        <property name="realm" ref="userRealm" />
         <!-- 缓存管理器 -->
         <!-- cacheManager -->
         <property name="cacheManager" ref="cacheManager" />
         <!-- sessionManager -->
-        <property name="sessionManager" ref="sessionManager" />
+        <!--<property name="sessionManager" ref="sessionManager" />-->
     </bean>
     <!--
     2. 配置cacheManager(缓存管理)
      -->
-<!--    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager">
-    </bean>-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"></bean>
     <!--
     3. 配置Realm，自己定义的shiroRealm，必须实现org.apache.shiro.realm.Realm这个接口
      -->
-    <!--<bean id="myRealm" class="maven.spring.shiro.realms.ShiroRealm">
+    <bean id="userRealm" class="com.cjrj.edu.shiro.UserRealm">
         <property name="cacheManager" ref="cacheManager"/>
-    </bean>-->
+    </bean>
     <!--
     4.配置lifecycleBeanPostProcessor， 可以自动的来调用配置在spring IOC 容器中shiro bean的生命周期方法 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
@@ -38,7 +37,7 @@
     </bean>
     <!--
     6. 配置shiroFilter
-    6.1 id必须和web.xml 文件中配置的DelegatingFilterProxy的filter-name一致
+    6.1 id必须和web.com.cjrj.edu.xml 文件中配置的DelegatingFilterProxy的filter-name一致
      -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -52,16 +51,15 @@
          -->
         <property name="filterChainDefinitions">
             <value>
-                /static/** = anon
+                /views/login.jsp = anon
+                /views/register.jsp = anon
                 /views/error/** = anon
-                /views/login = anon
                 <!--/index = anon-->
+                /static/** = anon
                 /views/** = authc
             </value>
         </property>
-
     </bean>
-
     <!-- shiro redisManager -->
     <bean id="redisManager" class="org.crazycake.shiro.RedisManager">
         <property name="host" value="127.0.0.1"/>
@@ -74,23 +72,23 @@
         -->
     </bean>
 
-    <!-- redisSessionDAO -->
+   <!-- &lt;!&ndash; redisSessionDAO &ndash;&gt;
     <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
         <property name="redisManager" ref="redisManager" />
     </bean>
 
-    <!-- sessionManager -->
+    &lt;!&ndash; sessionManager &ndash;&gt;
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="sessionDAO" ref="redisSessionDAO" />
     </bean>
 
-    <!-- cacheManager -->
+    &lt;!&ndash; cacheManager &ndash;&gt;
     <bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
         <property name="redisManager" ref="redisManager" />
-    </bean>
+    </bean>-->
 
     <!-- 启用shrio授权注解拦截方式  -->
-    <aop:config proxy-target-class="true"></aop:config>
+    <aop:config proxy-target-class="true"/>
 
     <!-- 注解支持 -->
     <context:annotation-config />

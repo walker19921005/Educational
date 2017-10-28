@@ -1,4 +1,4 @@
-<?com.cjrj.edu.mapper.xml version="1.0" encoding="UTF-8"?>
+<?com.cjrj.edu.xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -49,7 +49,7 @@
 
     <mvc:default-servlet-handler/>
     <!-- 带状态的视图控制器标签 -->
-    <!--<mvc:view-controller path="/" view-name="index" />-->
+    <mvc:view-controller path="/" view-name="/login.jsp" />
 
     <!-- 状态控制器标签 -->
     <mvc:status-controller path="/status" status-code="200"/>
@@ -58,9 +58,7 @@
     <mvc:view-controller path="/error/**" status-code="200"/>
 
     <!-- 配置静态资源，直接映射到对应的文件夹，DispatcherServlet 不处理 -->
-    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
-    <mvc:resources mapping="/js/**" location="/WEB-INF/static/js/"/>
-    <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
 
     <mvc:annotation-driven>
         <!-- 编码转换 -->
