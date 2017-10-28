@@ -12,3 +12,6 @@ SSM+Shiro+redis+log4j2+Mybatis Plus+Mybatis generator+Activiti
 
 Git:
 上传branch:姓名+dev，上传前pull requests
+
+登录用户：admin
+密码：123
