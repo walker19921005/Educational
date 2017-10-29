@@ -24,6 +24,7 @@
      -->
     <bean id="userRealm" class="com.cjrj.edu.shiro.UserRealm">
         <property name="cacheManager" ref="cacheManager"/>
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
     </bean>
     <!--
     4.配置lifecycleBeanPostProcessor， 可以自动的来调用配置在spring IOC 容器中shiro bean的生命周期方法 -->
@@ -51,11 +52,11 @@
          -->
         <property name="filterChainDefinitions">
             <value>
-                /views/login.jsp = anon
-                /views/register.jsp = anon
+                /static/** = anon
+                <!--/views/login.jsp = anon-->
+                <!--/views/register.jsp = anon-->
                 /views/error/** = anon
                 <!--/index = anon-->
-                /static/** = anon
                 /views/** = authc
             </value>
         </property>
@@ -65,7 +66,7 @@
         <property name="host" value="127.0.0.1"/>
         <property name="port" value="6379"/>
         <property name="expire" value="1800"/>
-        <property name="password" value="123456"/>
+        <!--<property name="password" value="123456"/>-->
         <!-- optional properties:
         <property name="timeout" value="10000"/>
         <property name="password" value="123456"/>

@@ -29,10 +29,10 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="/static/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${user.username}</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
@@ -46,14 +46,17 @@
                         IN+
                     </div>
                 </li>
-                <c:forEach items="${menu}" var="tree">
+                <c:forEach items="${user.tree}" var="tree">
                 <li>
-                    <a href="${tree.menuUrl}"><i class="fa fa-th-large"></i> <span class="nav-label">${tree.menuName}</span> <span class="fa arrow"></span></a>
+                    <a href="${tree.menuUrl}"><i class="fa fa-th-large"></i> <span class="nav-label">${tree.menuName}</span>
+                        <c:if test="${!empty tree.tree}"><span class="fa arrow"></span></c:if></a>
+                    <c:if test="${!empty tree.tree}">
                     <ul class="nav nav-second-level collapse">
                         <c:forEach items="${tree.tree}" var="menu">
                         <li><a href="${menu.menuUrl}">${menu.menuName}</a></li>
                         </c:forEach>
                     </ul>
+                    </c:if>
                 </li>
                 </c:forEach>
             </ul>
@@ -83,7 +86,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                        <img alt="image" class="img-circle" src="/static/img/a7.jpg">
                                     </a>
                                     <div class="media-body">
                                         <small class="pull-right">46h ago</small>
@@ -157,7 +160,6 @@
                 <strong>Copyright</strong> Example Company &copy; 2014-2017
             </div>
         </div>
-
     </div>
 </div>
 </body>

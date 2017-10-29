@@ -11,6 +11,7 @@ import com.cjrj.edu.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -85,6 +86,7 @@ public class UserRealm extends AuthorizingRealm {
         activiUser.setTree(menuTree);
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(activiUser,
                 activiUser.getPassword(), getName());
+        authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(user.getCredentialsSalt()));
         return authenticationInfo;
     }
 }

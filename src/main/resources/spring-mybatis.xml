@@ -24,7 +24,7 @@
 
         <property name="filters" value="${druid.filters}" />
         <!-- 最大并发连接数 -->
-        <property name="maxActive" value="20" />
+        <property name="maxActive" value="${druid.maxActive}" />
 
         <!-- 初始化连接数量 -->
         <property name="initialSize" value="${druid.initialSize}" />

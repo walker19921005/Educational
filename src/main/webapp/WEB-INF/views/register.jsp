@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: excalibur
@@ -21,30 +22,41 @@
     <div>
         <div>
 
-            <h1 class="logo-name">IN+</h1>
+            <h1 class="logo-name">CJ SOFT</h1>
 
         </div>
         <h3>Register to IN+</h3>
-        <p>Create account to see it in action.</p>
-        <form class="m-t" role="form" action="/register.do">
+        <form class="m-t" role="form" action="/register.do" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Name" name="username" required="">
+                <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" name="email" required="">
+                <input type="email" class="form-control" placeholder="请输入Email" name="email" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password" required="">
+                <input type="password" class="form-control" placeholder="请输入密码" name="password" required="">
             </div>
             <div class="form-group">
+                <input type="password" class="form-control" placeholder="请再次输入密码" name="repassword" required="">
+            </div>
+            <c:if test="${!empty dept}">
+            <div class="form-group">
+                <select class="select2-results__group form-control" name="deptid" placeholder="请选择部门" required="">
+                    <c:forEach items="${dept}" var="dept">
+                        <option class="" value="${dept.deptId}">${dept.deptName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            </c:if>
+            <%--<div class="form-group">
                 <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+            </div>--%>
+            <button type="submit" class="btn btn-primary block full-width m-b">立即注册</button>
 
-            <p class="text-muted text-center"><small>Already have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="login.jsp">Login</a>
+            <p class="text-muted text-center"><small>已经拥有账号?</small></p>
+            <a class="btn btn-sm btn-white btn-block" href="/">Login</a>
         </form>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        <%--<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>--%>
     </div>
 </div>
 
