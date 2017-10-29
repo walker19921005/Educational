@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjrj.edu.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.cjrj.edu.entity.Department">
+    <id column="DEPT_ID" jdbcType="DECIMAL" property="deptId" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="DEPT_DESC" jdbcType="VARCHAR" property="deptDesc" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="MODIFYNAME" jdbcType="NVARCHAR" property="modifyname" />
+    <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPT_ID, DEPT_NAME, DEPT_DESC, CREATEDATE, CREATENAME, MODIFYNAME, MODIFYDATE, DEL_FLAG
+  </sql>
+  <insert id="insertSelective" parameterType="com.cjrj.edu.entity.Department">
+    <selectKey keyProperty="deptId" order="BEFORE" resultType="java.math.BigDecimal">
+      select dept_seq.nextval from dual
+    </selectKey>
+    insert into USER_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      DEPT_ID,
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="deptDesc != null">
+        DEPT_DESC,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME,
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{deptId,jdbcType=DECIMAL},
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDesc != null">
+        #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyname != null">
+        #{modifyname,jdbcType=NVARCHAR},
+      </if>
+      <if test="modifydate != null">
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjrj.edu.entity.Department">
+    update USER_DEPARTMENT
+    <set>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDesc != null">
+        DEPT_DESC = #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyname != null">
+        MODIFYNAME = #{modifyname,jdbcType=NVARCHAR},
+      </if>
+      <if test="modifydate != null">
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=DECIMAL}
+  </update>
+</mapper>
