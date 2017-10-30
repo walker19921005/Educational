@@ -37,7 +37,7 @@
             <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
             <a href="#"><small>忘记密码?</small></a>
-            <a class="btn btn-sm btn-white btn-block" href="/register.do">创建新用户</a>
+            <a class="btn btn-sm btn-white btn-block" href="register.do">创建新用户</a>
         </form>
     </div>
 </div>
