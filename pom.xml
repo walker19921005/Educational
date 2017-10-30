@@ -148,6 +148,11 @@
       <artifactId>druid</artifactId>
       <version>${druid.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.5.4</version>
+    </dependency>
     <!-- data end -->
 
     <!-- 文件上传 -->

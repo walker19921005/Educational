@@ -3,8 +3,12 @@ package com.cjrj.edu.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.User;
 import java.math.BigDecimal;
-
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -64,11 +68,10 @@ public interface UserMapper extends BaseMapper<User> {
     int updateByPrimaryKey(User record);
 
     @Select({
-            "SELECT",
-            "USER_ID, USERNAME, PASSWORD, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, ",
-            "DEL_FLAG, EMAIL, DEPTID, SALT, LOCKED",
+            "select",
+            "USER_ID, USERNAME, PASSWORD, DEL_FLAG, EMAIL, DEPTID, SALT, LOCKED",
             "from T_USER",
             "where USERNAME = #{username}"
     })
-    User findByUsername(@Param("username") String username);
+    User findByUsername(String username);
 }

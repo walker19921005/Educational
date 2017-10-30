@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,28 +14,31 @@
     <div>
         <div>
 
-            <h1 class="logo-name">OA</h1>
+            <h1 class="logo-name">CJ SOFT</h1>
 
         </div>
-        <h3>Welcome to IN+</h3>
-        <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-            <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-        </p>
-        <p>Login in. To see it in action.</p>
-        <form class="m-t" role="form" action="/login.do">
+        <h3>Welcome to EducationalOA</h3>
+        <br>
+        <form class="m-t" role="form" action="/login.do" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Username" name="Username" required="">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Password" name="Password" required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            <c:if test="${!empty message}">
+            <div class="form-group">
+                <br>
+                <div class="col-sm-10">
+                    <div class="alert alert-danger">${message}</div>
+                </div>
+            </div>
+            </c:if>
+            <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
-            <a href="#"><small>Forgot password?</small></a>
-            <p class="text-muted text-center"><small>Do not have an account?</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="register.jsp">Create an account</a>
+            <a href="#"><small>忘记密码?</small></a>
+            <a class="btn btn-sm btn-white btn-block" href="/register.do">创建新用户</a>
         </form>
-        <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
     </div>
 </div>
 
