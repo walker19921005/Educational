@@ -53,7 +53,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /static/** = anon
-                <!--/views/login.jsp = anon-->
+                /views/login.jsp = anon
                 <!--/views/register.jsp = anon-->
                 /views/error/** = anon
                 <!--/index = anon-->
@@ -73,8 +73,8 @@
         -->
     </bean>
 
-   <!-- &lt;!&ndash; redisSessionDAO &ndash;&gt;
-    <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+    <!-- redisSessionDAO -->
+    <!--<bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
         <property name="redisManager" ref="redisManager" />
     </bean>
 
