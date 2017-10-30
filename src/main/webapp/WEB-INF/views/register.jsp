@@ -26,7 +26,7 @@
 
         </div>
         <h3>Register to IN+</h3>
-        <form class="m-t" role="form" action="/register.do" method="post">
+        <form class="m-t" role="form" action="register.do" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>
@@ -51,7 +51,7 @@
             <button type="submit" class="btn btn-primary block full-width m-b">立即注册</button>
 
             <p class="text-muted text-center"><small>点此登录</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="/">Login</a>
+            <a class="btn btn-sm btn-white btn-block" href="">Login</a>
         </form>
     </div>
 </div>
