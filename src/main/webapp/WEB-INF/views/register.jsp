@@ -26,7 +26,7 @@
 
         </div>
         <h3>Register to IN+</h3>
-        <form class="m-t" role="form" action="/register.do" method="post">
+        <form class="m-t" role="form" action="register.do" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>

@@ -19,7 +19,7 @@
         </div>
         <h3>Welcome to EducationalOA</h3>
         <br>
-        <form class="m-t" role="form" action="/login.do" method="post">
+        <form class="m-t" role="form" action="login.do" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Username" name="Username" required="">
             </div>
