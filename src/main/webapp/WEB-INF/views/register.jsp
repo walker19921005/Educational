@@ -22,7 +22,7 @@
     <div>
         <div>
 
-            <h1 class="logo-name">CJ SOFT</h1>
+            <h1 class="logo-name">CJ</h1>
 
         </div>
         <h3>Register to IN+</h3>
