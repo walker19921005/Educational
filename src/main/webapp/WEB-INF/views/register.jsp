@@ -48,15 +48,11 @@
                 </select>
             </div>
             </c:if>
-            <%--<div class="form-group">
-                <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-            </div>--%>
             <button type="submit" class="btn btn-primary block full-width m-b">立即注册</button>
 
-            <p class="text-muted text-center"><small>已经拥有账号?</small></p>
+            <p class="text-muted text-center"><small>点此登录</small></p>
             <a class="btn btn-sm btn-white btn-block" href="/">Login</a>
         </form>
-        <%--<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>--%>
     </div>
 </div>
 
