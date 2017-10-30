@@ -13,9 +13,7 @@
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
-
             <h1 class="logo-name">CJ</h1>
-
         </div>
         <h3>Welcome to EducationalOA</h3>
         <br>
