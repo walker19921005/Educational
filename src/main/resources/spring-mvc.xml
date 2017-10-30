@@ -49,7 +49,7 @@
 
     <mvc:default-servlet-handler/>
     <!-- 带状态的视图控制器标签 -->
-    <mvc:view-controller path="/" view-name="/login" />
+    <mvc:view-controller path="/" view-name="/login.jsp" />
 
     <!-- 状态控制器标签 -->
     <mvc:status-controller path="/status" status-code="200"/>
