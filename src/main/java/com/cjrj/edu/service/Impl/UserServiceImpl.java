@@ -24,4 +24,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
     public int insertSelective(User record) {
         return userMapper.insertSelective(record);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userMapper.findByEmail(email);
+    }
 }

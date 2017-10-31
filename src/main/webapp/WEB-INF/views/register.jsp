@@ -26,7 +26,7 @@
 
         </div>
         <h3>注册新用户</h3>
-        <form class="m-t" role="form" action="register.do" method="post">
+        <form class="m-t" role="form" action="register.do" method="post" id="register">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>
@@ -59,15 +59,7 @@
 <!-- Mainly scripts -->
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/bootstrap.js"></script>
-<!-- iCheck -->
-<script src="${pageContext.request.contextPath}/static/js/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green'
-        });
-    });
-</script>
+<script src="${pageContext.request.contextPath}/static/js/register.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/plugins/bootstrap-validator/bootstrapValidator.js"></script>
 </body>
 </html>

@@ -19,6 +19,15 @@
     <script src="${pageContext.request.contextPath}/static/js/inspinia.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/plugins/pace/pace.min.js"></script>
 
+    <script>
+        function getPage(url,name) {
+            if(url!=""){
+                $("#title h2").text(name);
+                $("#title strong").text(name);
+                $("#content").load(url+" #content");
+            }
+        }
+    </script>
 </head>
 <body class="">
 
@@ -29,17 +38,18 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
+                        <c:if test=""></c:if>
                             <img alt="image" class="img-circle" src="/static/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${user.username}</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="profile.html" id="">个人信息</a></li>
                             <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
+                            <li><a href="mailbox.html">邮箱</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="login.html">安全退出</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -48,12 +58,12 @@
                 </li>
                 <c:forEach items="${user.tree}" var="tree">
                 <li>
-                    <a href="${tree.menuUrl}"><i class="fa fa-th-large"></i> <span class="nav-label">${tree.menuName}</span>
+                    <a onclick="getPage('${tree.menuUrl}','${tree.menuName}')"><i class="fa fa-th-large"></i> <span class="nav-label">${tree.menuName}</span>
                         <c:if test="${!empty tree.tree}"><span class="fa arrow"></span></c:if></a>
                     <c:if test="${!empty tree.tree}">
                     <ul class="nav nav-second-level collapse">
                         <c:forEach items="${tree.tree}" var="menu">
-                        <li><a href="${menu.menuUrl}">${menu.menuName}</a></li>
+                        <li><a onclick="getPage('${menu.menuUrl}','${menu.menuName}')">${menu.menuName}</a></li>
                         </c:forEach>
                     </ul>
                     </c:if>
@@ -116,41 +126,29 @@
                     </li>
                     <li>
                         <a href="login.html">
-                            <i class="fa fa-sign-out"></i> Log out
+                            <i class="fa fa-sign-out"></i> 退出
                         </a>
                     </li>
                 </ul>
 
             </nav>
         </div>
-        <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="row wrapper border-bottom white-bg page-heading" id="title">
             <div class="col-sm-4">
                 <h2>This is main title</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">This is</a>
+                        <a href="index.html" id="index">首页</a>
                     </li>
                     <li class="active">
                         <strong>Breadcrumb</strong>
                     </li>
                 </ol>
             </div>
-            <div class="col-sm-8">
-                <div class="title-action">
-                    <a href="" class="btn btn-primary">This is action area</a>
-                </div>
-            </div>
         </div>
         <%--网页主体部分--%>
-        <div class="wrapper wrapper-content">
-            <div class="middle-box text-center animated fadeInRightBig">
-                <h3 class="font-bold">This is page content</h3>
-                <div class="error-desc">
-                    You can create here any grid layout you want. And any variation layout you imagine:) Check out
-                    main dashboard and other site. It use many different layout.
-                    <br/><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
-                </div>
-            </div>
+        <div class="wrapper wrapper-content" id="content">
+            <%--<iframe src="" id="content"></iframe>--%>
         </div>
         <div class="footer">
             <div class="pull-right">
