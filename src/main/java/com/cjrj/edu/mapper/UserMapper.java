@@ -74,4 +74,12 @@ public interface UserMapper extends BaseMapper<User> {
             "where USERNAME = #{username}"
     })
     User findByUsername(String username);
+
+    @Select({
+            "select",
+            "USER_ID, USERNAME, PASSWORD, DEL_FLAG, EMAIL, DEPTID, SALT, LOCKED",
+            "from T_USER",
+            "where EMAIL = #{email}"
+    })
+    User findByEmail(String email);
 }

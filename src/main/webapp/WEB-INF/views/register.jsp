@@ -22,11 +22,11 @@
     <div>
         <div>
 
-            <h1 class="logo-name">CJ SOFT</h1>
+            <h1 class="logo-name">CJ</h1>
 
         </div>
-        <h3>Register to IN+</h3>
-        <form class="m-t" role="form" action="/register.do" method="post">
+        <h3>注册新用户</h3>
+        <form class="m-t" role="form" action="register.do" method="post" id="register">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>
@@ -41,7 +41,7 @@
             </div>
             <c:if test="${!empty dept}">
             <div class="form-group">
-                <select class="select2-results__group form-control" name="deptid" placeholder="请选择部门" required="">
+                <select class="select2-results__group form-control" name="deptid" required="">
                     <c:forEach items="${dept}" var="dept">
                         <option class="" value="${dept.deptId}">${dept.deptName}</option>
                     </c:forEach>
@@ -51,7 +51,7 @@
             <button type="submit" class="btn btn-primary block full-width m-b">立即注册</button>
 
             <p class="text-muted text-center"><small>点此登录</small></p>
-            <a class="btn btn-sm btn-white btn-block" href="/">Login</a>
+            <a class="btn btn-sm btn-white btn-block" href="/login.jsp">Login</a>
         </form>
     </div>
 </div>
@@ -59,15 +59,7 @@
 <!-- Mainly scripts -->
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/bootstrap.js"></script>
-<!-- iCheck -->
-<script src="${pageContext.request.contextPath}/static/js/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green'
-        });
-    });
-</script>
+<script src="${pageContext.request.contextPath}/static/js/register.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/plugins/bootstrap-validator/bootstrapValidator.js"></script>
 </body>
 </html>
