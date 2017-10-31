@@ -28,7 +28,7 @@ public class LoginController {
     private DepartmentMapper departmentMapper;
 
     /**
-     * 登录
+     * 鐧诲綍
      * @param username
      * @param password
      * @param model
@@ -41,14 +41,14 @@ public class LoginController {
         try{
             subject.login(token);
         }catch (IncorrectCredentialsException ice){
-            model.addAttribute("message", "密码不正确!");
-            return "/login.jsp";
+            model.addAttribute("message", "瀵嗙爜涓嶆纭�!");
+            return "login.jsp";
         }catch (UnknownAccountException uae){
-            model.addAttribute("message", "用户名不存在!");
-            return "/login.jsp";
+            model.addAttribute("message", "鐢ㄦ埛鍚嶄笉瀛樺湪!");
+            return "login.jsp";
         }catch (ExcessiveAttemptsException eae){
-            model.addAttribute("message", "登录次数过多");
-            return "/login.jsp";
+            model.addAttribute("message", "鐧诲綍娆℃暟杩囧");
+            return "login.jsp";
         }
         ActiviUser user= (ActiviUser) subject.getPrincipal();
         subject.getSession().setAttribute("user", user);
@@ -56,7 +56,7 @@ public class LoginController {
     }
 
     /**
-     * 注册
+     * 娉ㄥ唽
      * @param user
      * @param request
      * @return
@@ -68,10 +68,10 @@ public class LoginController {
             passwordHelper.encryptPassword(user);
             int i = userService.insertSelective(user);
             if (i > 0) {
-                return "/login.jsp";
+                return "login.jsp";
             }
         }else {
-            model.addAttribute("dept",departmentMapper.selectAllDept());
+            //model.addAttribute("dept",departmentMapper.selectAllDept());
         }
         return "register";
     }

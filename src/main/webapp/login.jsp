@@ -19,7 +19,7 @@
         </div>
         <h3>Welcome to EducationalOA</h3>
         <br>
-        <form class="m-t" role="form" action="/login.do" method="post">
+        <form class="m-t" role="form" action="login.do" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Username" name="Username" required="">
             </div>
@@ -37,7 +37,7 @@
             <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
             <a href="#"><small>忘记密码?</small></a>
-            <a class="btn btn-sm btn-white btn-block" href="/register.do">创建新用户</a>
+            <a class="btn btn-sm btn-white btn-block" href="register.do">创建新用户</a>
         </form>
     </div>
 </div>

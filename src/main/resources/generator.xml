@@ -5,7 +5,7 @@
 <generatorConfiguration>
 
     <!-- !!!! Driver Class Path !!!! -->
-    <classPathEntry location="/Users/excalibur/Downloads/Dev/JARS/DBDriver/ojdbc6-12.1.0.2.jar"/>
+    <classPathEntry location="D:\respository\com\oracle\ojdbc6\11.2.0.1.0\ojdbc6-11.2.0.1.0.jar"/>
 
     <context id="context" targetRuntime="MyBatis3">
         <property name="javaFileEncoding" value="utf-8"/>
@@ -16,8 +16,8 @@
         </commentGenerator>
 
         <!-- !!!! Database Configurations !!!! -->
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@//10.211.55.4:1521/orcl"
-                        userId="eduManager" password="123456"/>
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
+                        userId="sys as sysdba" password="System12"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="true"/>
@@ -79,10 +79,16 @@
             <generatedKey column="teach_id" sqlStatement="select teacher_seq.nextval from dual"/>
         </table>
 -->
-        <table tableName="user_department" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+       <!--  <table tableName="user_department" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" domainObjectName="Department">
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <generatedKey column="dept_id" sqlStatement="select dept_seq.nextval from dual"/>
+        </table> -->
+        <!-- 日程管理 -->
+         <table tableName="t_schedule" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" domainObjectName="Schedule">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <generatedKey column="sch_id" sqlStatement="select sche_seq.nextval from dual"/>
         </table>
     </context>
 </generatorConfiguration>
