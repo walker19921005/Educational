@@ -256,7 +256,7 @@
       <groupId>org.activiti</groupId>
       <artifactId>activiti-explorer</artifactId>
       <version>5.22.0</version>
-      <exclusions>
+      <!-- <exclusions>
         <exclusion>
           <artifactId>vaadin</artifactId>
           <groupId>com.vaadin</groupId>
@@ -269,7 +269,7 @@
           <artifactId>activiti-simple-workflow</artifactId>
           <groupId>org.activiti</groupId>
         </exclusion>
-      </exclusions>
+      </exclusions> -->
     </dependency>
     <dependency>
       <groupId>org.activiti</groupId>
