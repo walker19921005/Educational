@@ -25,8 +25,13 @@
             <h1 class="logo-name">CJ</h1>
 
         </div>
+<<<<<<< HEAD
         <h3>注册新用户</h3>
         <form class="m-t" role="form" action="register.do" method="post" id="register">
+=======
+        <h3>Register to IN+</h3>
+        <form class="m-t" role="form" action="register.do" method="post">
+>>>>>>> refs/heads/wb
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="请输入用户名" name="username" required="">
             </div>

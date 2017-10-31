@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间 -->
+<mapper namespace="com.cjrj.edu.mapper.CourseMapper">
+
+<resultMap type="com.cjrj.edu.entity.Course" id="CourseResult">
+<id  property="course_id" column="course_id"/>
+<result property="course_name" column="course_name"/>
+<result property="stageid" column="stageid"/>
+<result property="course_days" column="course_days"/>
+<result property="course_desc" column="course_desc"/>
+<result property="teachid" column="teachid"/>
+<result property="createdate" column="createdate"/>
+<result property="createname" column="createname"/>
+<result property="modifydate" column="modifydate"/>
+<result property="modifyname" column="modifyname"/>
+<result property="del_flag" column="del_flag"/>
+</resultMap>
+
+<!--分页查询  -->
+<select id="getCourseList" resultMap="CourseResult" parameterType="map">
+select * from (select  s.*,rownum rn from stage_course s where del_flag=0)  where rn  &gt; #{startPage} and rn &lt;=#{endPage}
+</select>
+
+<!-- 根据id查询 -->
+<select id="getCourseById" resultMap="CourseResult" parameterType="int">
+select * from stage_course where course_id=#{course_id} and del_flag=0
+</select>
+
+<!-- 修改 -->
+<update id="updateCourse" parameterType="com.cjrj.edu.entity.Course">
+update stage_course set course_name=#{course_name},stageid=#{stageid},course_days=#{course_days},course_desc=#{course_desc},teachid=#{teachid},modifydate=sysdate,modifyname=#{modifyname},
+del_flag=#{del_flag} where course_id=#{course_id}
+</update>
+
+<!--删除课程  -->
+<update id="delCourseById" parameterType="map" >
+update stage_course set del_flag=#{del_flag} where course_id=#{course_id}
+</update>
+</mapper>

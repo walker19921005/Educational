@@ -1,14 +1,18 @@
 package com.cjrj.edu.mapper;
 
-import com.cjrj.edu.entity.Teacher;
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
+import com.cjrj.edu.entity.Teacher;
+@Repository
 public interface TeacherMapper {
     @Delete({
         "delete from USER_TEACHER",
@@ -72,4 +76,10 @@ public interface TeacherMapper {
         "where TEACH_ID = #{teachId,jdbcType=DECIMAL}"
     })
     int updateByPrimaryKey(Teacher record);
+    
+    /**
+     * 查询所有教师
+     * @return
+     */
+    public List<Teacher>getTeachList();
 }
