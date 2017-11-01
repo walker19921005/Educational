@@ -1,15 +1,21 @@
 package com.cjrj.edu.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.cjrj.edu.entity.Student;
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
-public interface StudentMapper {
+@Repository
+public interface StudentMapper extends BaseMapper<Student> {
     @Delete({
         "delete from USER_STUDENT",
         "where STU_ID = #{stuId,jdbcType=DECIMAL}"
@@ -77,4 +83,14 @@ public interface StudentMapper {
         "where STU_ID = #{stuId,jdbcType=DECIMAL}"
     })
     int updateByPrimaryKey(Student record);
+
+    @Select({
+            "select",
+            "stu.STU_ID, stu.USERID, stu.STU_NAME, stu.SEX, stu.STU_IPHONE, stu.STU_PHONE, stu.STU_ADDRESS, stu.STU_BIRTHDAY, ",
+            "stu.ENROLDATE, stu.CREATEDATE, stu.CREATENAME, stu.MODIFYDATE, stu.MODIFYNAME, stu.DEL_FLAG, stu.LINKMAN, ",
+            "stu.LINKMAN_IPHONE, stu.GRADUATEDATE, stu.ICON, stu.CLASSID,u.USERNAME,u.EMAIL ",
+            "from USER_STUDENT stu,T_USER u",
+            "WHERE stu.USERID=u.USER_ID"
+    })
+    List<Student> selectAllStudent(Page page);
 }

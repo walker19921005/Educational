@@ -1,5 +1,6 @@
 package com.cjrj.edu.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.Role_User;
 import java.math.BigDecimal;
 import org.apache.ibatis.annotations.Delete;
@@ -8,8 +9,10 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
-public interface Role_UserMapper {
+@Repository
+public interface Role_UserMapper extends BaseMapper<Role_User> {
     @Delete({
         "delete from T_ROLE_USER",
         "where ID = #{id,jdbcType=DECIMAL}"
@@ -27,7 +30,7 @@ public interface Role_UserMapper {
         "#{modifyname,jdbcType=VARCHAR}, #{delFlag,jdbcType=DECIMAL})"
     })
     @SelectKey(statement="select user_seq.nextval from dual", keyProperty="id", before=true, resultType=BigDecimal.class)
-    int insert(Role_User record);
+    int insertRoleUser(Role_User record);
 
     int insertSelective(Role_User record);
 

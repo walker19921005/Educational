@@ -70,4 +70,11 @@ public interface RoleMapper extends BaseMapper<Role> {
             "where ru.USERID= = #{username}"
     })
     Set<Role> findRoles(@Param("username") String username);
+
+    @Select({
+            "SELECT ",
+            "ROLE_ID, ROLE_NAME, ROLE_DESC, PARENTID, DEL_FLAG, ENABLE",
+            "from T_ROLE"
+    })
+    Set<Role> selectAllRoles();
 }
