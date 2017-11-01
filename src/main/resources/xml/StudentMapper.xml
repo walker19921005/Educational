@@ -21,7 +21,10 @@
     <result column="GRADUATEDATE" jdbcType="TIMESTAMP" property="graduatedate" />
     <result column="ICON" jdbcType="VARCHAR" property="icon" />
     <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
-    <association property="userinfo" resultMap="com.cjrj.edu.mapper.UserMapper.BaseResultMap">
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="DEPTID" jdbcType="DECIMAL" property="deptid" />
+    <association property="userinfo" column="USER_ID" javaType="com.cjrj.edu.entity.User">
       <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
       <result column="USERNAME" jdbcType="VARCHAR" property="username" />
       <result column="PASSWORD" jdbcType="VARCHAR" property="password" />

@@ -9,13 +9,13 @@ function initTable() {
     $("#stuTable").bootstrapTable({
         method: "post",  //使用get请求到服务器获取数据
         contentType: "application/x-www-form-urlencoded",
-        url: "/student/list", //获取数据的Servlet地址
+        url: "student/list", //获取数据的Servlet地址
         toolbar: '#toolbar',                //工具按钮用哪个容器
         striped: true,                      //是否显示行间隔色
         cache: true,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
         pagination: true,                   //是否显示分页（*）
-        sortable: true,                     //是否启用排序
-        silentSort: true,
+        sortable: false,                     //是否启用排序
+        silentSort: false,
         paginationPreText: "上一页",
         paginationNextText: "下一页",
         // sortOrder: "asc",                   //排序方式
@@ -26,17 +26,17 @@ function initTable() {
         search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
         strictSearch: false,
         showColumns: true,                  //是否显示所有的列
-        showRefresh: true,                  //是否显示刷新按钮
+        showRefresh: false,                  //是否显示刷新按钮
         showPaginationSwitch: true,
         // showFooter:true,
         minimumCountColumns: 2,             //最少允许的列数
         clickToSelect: true,                //是否启用点击选中行
-        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
         uniqueId: "stuId",                     //每一行的唯一标识，一般为主键列
-        showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+        showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
         detailView: false,                   //是否显示父子表
-        checkboxHeader: true,
+        checkboxHeader: false,
         columns: [{
             checkbox: true
         }, {
@@ -53,11 +53,26 @@ function initTable() {
             field: 'stuName',
             title: '姓名'
         }, {
-            field: 'username',
+            field: 'userid',
+            editable: {
+                type: 'select',
+                source: function () {
+                    var result = [];
+                    $.ajax({
+                        url: 'user/deptid',
+                        async: false,
+                        type: "post",
+                        success: function (data, status) {
+                            $.each(data, function (key, value) {
+                                result.push({value: value.id, text: value.text});
+                            });
+                        }
+                    });
+                    return result;
+                },
+                title: '账号'
+            },
             title: '账号'
-        }, {
-            field: 'email',
-            title: 'Email'
         }, {
             field: 'sex',
             title: '性别'
@@ -110,16 +125,11 @@ function initTable() {
             },
             title: '部门'
         }, {
-            field: 'creattime',
-            title: '创建时间'
-        }, {
             field: 'delFlag',
-            width: '20px',
             title: '状态'
         }, {
             field: 'roleId',
             title: '系统角色',
-            width: '20px',
             editable: {
                 type: 'select2',
                 title: '系统角色',

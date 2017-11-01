@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
@@ -52,5 +53,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User findByEmail(String email) {
         return userMapper.findByEmail(email);
+    }
+
+    @Override
+    public List<User> selectAllUser() {
+        return userMapper.selectAllUser();
     }
 }

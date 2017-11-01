@@ -3,6 +3,8 @@ package com.cjrj.edu.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.User;
 import java.math.BigDecimal;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.ResultMap;
@@ -82,4 +84,12 @@ public interface UserMapper extends BaseMapper<User> {
             "where EMAIL = #{email}"
     })
     User findByEmail(String email);
+
+    @Select({
+            "select",
+            "USER_ID, USERNAME, CREATEDATE, CREATENAME, MODIFYDATE, MODIFYNAME, ",
+            "DEL_FLAG, EMAIL, DEPTID, LOCKED",
+            "from T_USER"
+    })
+    List<User> selectAllUser();
 }

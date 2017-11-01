@@ -1,5 +1,8 @@
 package com.cjrj.edu.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,10 +22,12 @@ public class Menu implements Serializable {
 
     private BigDecimal enable;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
     private String createname;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifydate;
 
     private String modifyname;
@@ -87,6 +92,7 @@ public class Menu implements Serializable {
         this.enable = enable;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreatedate() {
         return createdate;
     }
@@ -103,6 +109,7 @@ public class Menu implements Serializable {
         this.createname = createname == null ? null : createname.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getModifydate() {
         return modifydate;
     }

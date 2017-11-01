@@ -3,6 +3,7 @@ package com.cjrj.edu.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.cjrj.edu.entity.Role;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.annotations.*;
@@ -77,4 +78,12 @@ public interface RoleMapper extends BaseMapper<Role> {
             "from T_ROLE"
     })
     Set<Role> selectAllRoles();
+
+    @Select({
+            "SELECT ",
+            "r.ROLE_ID, r.ROLE_NAME, r.ROLE_DESC, r.PARENTID, r.DEL_FLAG, r.ENABLE",
+            "from T_ROLE r LEFT JOIN T_ROLE_USER ru ON r.ROLE_ID = ru.ROLEID ",
+            "WHERE ru.USERID=#{userId}"
+    })
+    List<Role> findRolesByUserId(BigDecimal userId);
 }

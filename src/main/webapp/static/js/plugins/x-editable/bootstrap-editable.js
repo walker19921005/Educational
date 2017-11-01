@@ -784,7 +784,12 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                var idKey = valueProp || 'value';
                valueProp = function (e) { return e[idKey]; };
            }
-                      
+
+           value += "";
+           if (value.substr(0, 1) == ',')
+               value = value.substr(1);
+           value = value.split(',');
+
            var isValArray = $.isArray(value),
            result = [], 
            that = this;

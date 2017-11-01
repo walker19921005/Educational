@@ -1,16 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/static/js/plugins/x-editable/bootstrap-editable.js"></script>
+    <link type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap-table.css" rel="stylesheet">
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/static/css/plugins/x-editable/bootstrap-editable.css"
+          rel="stylesheet">
+    <link type="text/css" href="${pageContext.request.contextPath}/static/css/plugins/select2/select2.min.css" rel="stylesheet">
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/plugins/bootstrap-table/bootstrap-table.js"></script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/plugins/x-editable/bootstrap-editable.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/plugins/editable/bootstrap-table-editable.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/plugins/select2/select2.full.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/plugins/bootstrap-table/toolbar/bootstrap-table-toolbar.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/student.js"></script>
-    <link type="text/css" href="${pageContext.request.contextPath}/static/css/bootstrap-table.css" rel="stylesheet">
-    <link type="text/css"
-          href="${pageContext.request.contextPath}/static/css/plugins/x-editable/bootstrap-editable.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="panel-body" style="padding-bottom:0px;">
@@ -37,7 +44,7 @@
             </form>
         </div>
     </div>
-    <div id="toolbar" class="btn-toolbar">
+    <div id="toolbar" class="fixed-table-toolbar">
         <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="modal"
                                       data-target="#addEmp"></span>
@@ -46,7 +53,9 @@
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         </button>
     </div>
-    <table id="stuTable" class="table table-hover"></table>
+    <div class=table-responsive">
+    <table id="stuTable" class="table table-striped table-bordered table-hover text-nowrap"></table>
+    </div>
 </div>
 </body>
 </html>

@@ -1,5 +1,8 @@
 package com.cjrj.edu.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,14 +22,18 @@ public class Student implements Serializable {
 
     private String stuAddress;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date stuBirthday;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date enroldate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdate;
 
     private String createname;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifydate;
 
     private String modifyname;
@@ -37,6 +44,7 @@ public class Student implements Serializable {
 
     private String linkmanIphone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date graduatedate;
 
     private String icon;
@@ -44,6 +52,14 @@ public class Student implements Serializable {
     private BigDecimal classid;
 
     private User userinfo;
+
+    private String username;
+
+    private String email;
+
+    private BigDecimal deptid;
+
+    private BigDecimal[] roleId;
 
     private static final long serialVersionUID = 1L;
 
@@ -103,6 +119,7 @@ public class Student implements Serializable {
         this.stuAddress = stuAddress == null ? null : stuAddress.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getStuBirthday() {
         return stuBirthday;
     }
@@ -111,6 +128,7 @@ public class Student implements Serializable {
         this.stuBirthday = stuBirthday;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getEnroldate() {
         return enroldate;
     }
@@ -119,6 +137,7 @@ public class Student implements Serializable {
         this.enroldate = enroldate;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getCreatedate() {
         return createdate;
     }
@@ -135,6 +154,7 @@ public class Student implements Serializable {
         this.createname = createname == null ? null : createname.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getModifydate() {
         return modifydate;
     }
@@ -175,6 +195,7 @@ public class Student implements Serializable {
         this.linkmanIphone = linkmanIphone == null ? null : linkmanIphone.trim();
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date getGraduatedate() {
         return graduatedate;
     }
@@ -205,5 +226,37 @@ public class Student implements Serializable {
 
     public void setUserinfo(User userinfo) {
         this.userinfo = userinfo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public BigDecimal getDeptid() {
+        return deptid;
+    }
+
+    public void setDeptid(BigDecimal deptid) {
+        this.deptid = deptid;
+    }
+
+    public BigDecimal[] getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(BigDecimal[] roleId) {
+        this.roleId = roleId;
     }
 }

@@ -7,6 +7,7 @@ import com.cjrj.edu.service.RoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Service
@@ -22,5 +23,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper,Role> implements Rol
     @Override
     public Set<Role> selectAllRoles() {
         return roleMapper.selectAllRoles();
+    }
+
+    @Override
+    public Set<Role> findRolesByUserId(BigDecimal userId) {
+        return null;
     }
 }

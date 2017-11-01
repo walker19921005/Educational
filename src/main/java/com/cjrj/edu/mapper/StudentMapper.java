@@ -88,7 +88,7 @@ public interface StudentMapper extends BaseMapper<Student> {
             "select",
             "stu.STU_ID, stu.USERID, stu.STU_NAME, stu.SEX, stu.STU_IPHONE, stu.STU_PHONE, stu.STU_ADDRESS, stu.STU_BIRTHDAY, ",
             "stu.ENROLDATE, stu.CREATEDATE, stu.CREATENAME, stu.MODIFYDATE, stu.MODIFYNAME, stu.DEL_FLAG, stu.LINKMAN, ",
-            "stu.LINKMAN_IPHONE, stu.GRADUATEDATE, stu.ICON, stu.CLASSID,u.USERNAME,u.EMAIL ",
+            "stu.LINKMAN_IPHONE, stu.GRADUATEDATE, stu.ICON, stu.CLASSID,u.USERNAME,u.EMAIL,u.DEPTID ",
             "from USER_STUDENT stu,T_USER u",
             "WHERE stu.USERID=u.USER_ID"
     })

@@ -28,6 +28,6 @@ public class DeptController {
             selectVO.setText(department.getDeptName());
             dept.add(selectVO);
         }
-        return list;
+        return dept;
     }
 }
