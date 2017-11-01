@@ -43,6 +43,8 @@ public class Student implements Serializable {
 
     private BigDecimal classid;
 
+    private User userinfo;
+
     private static final long serialVersionUID = 1L;
 
     public BigDecimal getStuId() {
@@ -195,5 +197,13 @@ public class Student implements Serializable {
 
     public void setClassid(BigDecimal classid) {
         this.classid = classid;
+    }
+
+    public User getUserinfo() {
+        return userinfo;
+    }
+
+    public void setUserinfo(User userinfo) {
+        this.userinfo = userinfo;
     }
 }
