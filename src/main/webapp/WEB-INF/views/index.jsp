@@ -22,9 +22,15 @@
     <script>
         function getPage(url,name) {
             if(url!=""){
+//                $.ajax({cache: false});
                 $("#title h2").text(name);
                 $("#title strong").text(name);
-                $("#content").load(url+" #content");
+                $("#content").load(url,function(result){
+                    //alert(result);
+                    //将被加载页的JavaScript加载到本页执行
+                    $result = $(result);
+                    $result.find("script").appendTo('#content');
+                });
             }
         }
     </script>
@@ -39,7 +45,7 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
                         <c:if test=""></c:if>
-                            <img alt="image" class="img-circle" src="/static/img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="${pageContext.request.contextPath}/static/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${user.username}</strong>
@@ -135,10 +141,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading" id="title">
             <div class="col-sm-4">
-                <h2>This is main title</h2>
+                <h2></h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html" id="index">首页</a>
+                    </li>
+                    <li class="active">
+                        <span>Breadcrumb</span>
                     </li>
                     <li class="active">
                         <strong>Breadcrumb</strong>
@@ -146,10 +155,7 @@
                 </ol>
             </div>
         </div>
-        <%--网页主体部分--%>
-        <div class="wrapper wrapper-content" id="content">
-            <%--<iframe src="" id="content"></iframe>--%>
-        </div>
+        <div class="wrapper wrapper-content" id="content"></div>
         <div class="footer">
             <div class="pull-right">
                 10GB of <strong>250GB</strong> Free.

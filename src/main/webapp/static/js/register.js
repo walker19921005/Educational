@@ -16,7 +16,7 @@ $(function () {
                         url: 'user/chkUserName',
                         message: '用户已存在,请修改',
                         type: 'post',
-                        delay: 1000
+                        delay: 2000
                     },
                     regexp: {
                         regexp: /^[a-zA-Z0-9_]+$/,

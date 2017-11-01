@@ -21,6 +21,20 @@
     <result column="GRADUATEDATE" jdbcType="TIMESTAMP" property="graduatedate" />
     <result column="ICON" jdbcType="VARCHAR" property="icon" />
     <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <association property="userinfo" resultMap="com.cjrj.edu.mapper.UserMapper.BaseResultMap">
+      <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+      <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+      <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+      <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+      <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+      <result column="MODIFYDATE" jdbcType="TIMESTAMP" property="modifydate" />
+      <result column="MODIFYNAME" jdbcType="VARCHAR" property="modifyname" />
+      <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+      <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+      <result column="DEPTID" jdbcType="DECIMAL" property="deptid" />
+      <result column="SALT" jdbcType="VARCHAR" property="salt" />
+      <result column="LOCKED" jdbcType="DECIMAL" property="locked" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     STU_ID, USERID, STU_NAME, SEX, STU_IPHONE, STU_PHONE, STU_ADDRESS, STU_BIRTHDAY, 

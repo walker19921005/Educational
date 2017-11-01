@@ -18,4 +18,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper,Role> implements Rol
     public Set<Role> findRoles(String username) {
         return roleMapper.findRoles(username);
     }
+
+    @Override
+    public Set<Role> selectAllRoles() {
+        return roleMapper.selectAllRoles();
+    }
 }
