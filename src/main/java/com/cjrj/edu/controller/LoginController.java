@@ -42,25 +42,13 @@ public class LoginController {
             subject.login(token);
         }catch (IncorrectCredentialsException ice){
             model.addAttribute("message", "密码不正确!");
-<<<<<<< HEAD
-            return "forward:/login.jsp";
-=======
             return "redirect:login.jsp";
->>>>>>> refs/heads/wb
         }catch (UnknownAccountException uae){
             model.addAttribute("message", "用户名不存在!");
-<<<<<<< HEAD
-            return "forward:/login.jsp";
-=======
             return "redirect:login.jsp";
->>>>>>> refs/heads/wb
         }catch (ExcessiveAttemptsException eae){
             model.addAttribute("message", "登录次数过多");
-<<<<<<< HEAD
-            return "forward:/login.jsp";
-=======
             return "redirect:login.jsp";
->>>>>>> refs/heads/wb
         }
         ActiviUser user= (ActiviUser) subject.getPrincipal();
         subject.getSession().setAttribute("user", user);
@@ -80,11 +68,7 @@ public class LoginController {
             passwordHelper.encryptPassword(user);
             int i = userService.insertSelective(user);
             if (i > 0) {
-<<<<<<< HEAD
-                return "forward:/login.jsp";
-=======
                 return "redirect:login.jsp";
->>>>>>> refs/heads/wb
             }
         }else {
             model.addAttribute("dept",departmentMapper.selectAllDept());
