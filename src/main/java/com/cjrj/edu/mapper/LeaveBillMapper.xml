@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cjrj.edu.mapper.LeaveBillMapper">
+	<insert id="add">
+		insert into leavebill(<trim suffixOverrides=",">
+            <if test="id !=null and id !=''">id,</if>
+            <if test="name !=null and name !=''">name,</if>
+            <if test="days !=null and days !=''">days,</if>
+            <if test="content !=null and content !=''">content,</if>
+            <if test="remark !=null and remark !=''">remark,</if>
+            <if test="leaveDate !=null and leaveDate !=''">leaveDate,</if>
+            <if test="status !=null and status !=''">status</if>
+            
+            </trim>)values(<trim suffixOverrides=",">
+           	<if test="id !=null and id !=''">#{id},</if>
+            <if test="name !=null and name !=''">#{name},</if>
+            <if test="days !=null and days !=''">#{days},</if>
+            <if test="content !=null and content !=''">#{content},</if>
+            <if test="remark !=null and remark !=''">#{remark},</if>
+            <if test="leaveDate !=null and leaveDate !=''">#{leaveDate},</if>
+            <if test="status !=null and status !=''">#{status}</if>
+            </trim>)
+	</insert>
+	
+	<!-- 查看全部 -->
+	<select id="list" resultType="com.cjrj.edu.entity.LeaveBill">
+		select * from leavebill where name =#{name} 
+	</select>
+	
+	<!-- 查询总记录数 -->
+	<select id="getTotle" resultType="java.lang.Long">
+		select count(*) as totle from leavebill where name=#{name}
+	</select>
+	
+	<!-- 删除假单 -->
+	<delete id="del">
+		delete  from leavebill where id = #{id}
+	</delete>
+	
+	<!-- 通过id获取假单 -->
+	<select id="findLeaveBillById" resultType="com.cjrj.edu.entity.LeaveBill">
+		select * from leavebill where id = #{id}
+	</select>
+	
+	<!-- 修改状态 -->
+	<update id="updateStatus">
+		update leavebill set status = #{status} where id = #{id}
+	</update>
+</mapper>

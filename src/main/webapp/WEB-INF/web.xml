@@ -96,6 +96,41 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
 
+<listener>
+		<listener-class>com.cjrj.edu.entity.WebAppContextListener</listener-class>
+	</listener>
+	<!-- 工作流模型 -->
+	<servlet>
+		<servlet-name>ExplorerRestletServlet</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>org.activiti.explorer.rest.ExplorerRestApplication</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>RestletServlet</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>org.activiti.rest.service.application.ActivitiRestServicesApplication</param-value>
+		</init-param>
+	</servlet>
+	<!-- activiti model请求 -->
+	<servlet>
+		<servlet-name>ModelRestServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc-activiti.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModelRestServlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+	
     <!-- 异常配置 -->
     <error-page>
         <error-code>400</error-code>

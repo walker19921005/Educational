@@ -42,13 +42,13 @@ public class LoginController {
             subject.login(token);
         }catch (IncorrectCredentialsException ice){
             model.addAttribute("message", "密码不正确!");
-            return "/login.jsp";
+            return "login.jsp";
         }catch (UnknownAccountException uae){
             model.addAttribute("message", "用户名不存在!");
-            return "/login.jsp";
+            return "login.jsp";
         }catch (ExcessiveAttemptsException eae){
             model.addAttribute("message", "登录次数过多");
-            return "/login.jsp";
+            return "login.jsp";
         }
         ActiviUser user= (ActiviUser) subject.getPrincipal();
         subject.getSession().setAttribute("user", user);
@@ -68,7 +68,6 @@ public class LoginController {
             passwordHelper.encryptPassword(user);
             int i = userService.insertSelective(user);
             if (i > 0) {
-                return "/login.jsp";
             }
         }else {
             model.addAttribute("dept",departmentMapper.selectAllDept());
