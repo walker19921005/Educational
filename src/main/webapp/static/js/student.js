@@ -1,5 +1,8 @@
 $(function () {
     initTable();
+    $("#btn_delete").bind("click", delPermission);
+    $("#btn_add").bind("click", Add);
+    settingForm();
 });
 
 function initTable() {
@@ -157,16 +160,16 @@ function initTable() {
                     width: '200px'
                 }
             }
-        }, {
+        }/*, {
             title: '操作',
             formatter: function (value, row) {
                 var id = row.userId;
                 return '<button type="button" class="btn btn-default" id="roleTree"><span class="glyphicon glyphicon-edit" aria-hidden="true" ' +
-                    'data-toggle="modal" data-target="#queryRole" onclick="setCheck('+id+')"></span></button> ' +
+                    'data-toggle="modal" data-target="#queryRole" onclick="setCheck(' + id + ')"></span></button> ' +
                     '<button type="button" class="btn btn-default" id="roleTree"><span class="glyphicon glyphicon-delete" aria-hidden="true" ' +
-                    'data-toggle="modal" data-target="#queryRole" onclick="setCheck('+id+')"></span></button> '
+                    'data-toggle="modal" data-target="#queryRole" onclick="setCheck(' + id + ')"></span></button> '
             }
-        }],
+        }*/],
         responseHandler: function (res) {
             return {
                 "total": res.total,//总页数
@@ -205,6 +208,181 @@ function initTable() {
                 pageSize: params.pageSize
             };
             return param;
+        }
+    });
+}
+
+function delPermission() {
+    var rows = $("#stuTable").bootstrapTable("getSelections");
+    var ids = "";
+    if (rows.length > 0) {
+        for (var i = 0; i < rows.length; i++) {
+            ids += rows[i].userid + ',';
+        }
+    } else {
+        alert("请先选择要删除的记录!");
+        return;
+    }
+    ids = ids.substring(0, ids.length - 1);
+    //询问框
+    layer.confirm('确定删除吗？', {
+        btn: ['确定', '取消'] //按钮
+    }, function () {
+        $.ajax({
+            type: "POST",
+            url: "/student/delete",
+            data: {"ids": ids},
+            success: function (data) {
+                if (data > 0) {
+                    alert("成功删除" + data + "条信息");
+                    $('#stuTable').bootstrapTable('refresh', {url: "/student/list"});
+                }
+                layer.closeAll();
+            }
+        });
+    }, function () {
+        return;
+    });
+}
+
+function Add() {
+    var bootstrapValidator = $("#addForm").data('bootstrapValidator');
+    bootstrapValidator.validate();
+    $("#rid").text($("#select2_role").select2('val'));
+    if (bootstrapValidator.isValid()) {
+        $.ajax({
+            type: "POST",
+            url: "/student/add.do",
+            dataType: "json",
+            data: {
+                userName: $("#userName").val(),
+                userSex: $("#userSex input:radio:checked").val(),
+                userDesc: $("#userDesc").val(),
+                udeptId: $("#select2_dept option:selected").val(),
+                userAddress: $("#userAddress").val(),
+                creattime: $("#creattime").val(),
+                role: $("#rid").text()
+            },
+            success: function (data) {
+                if (data) {
+                    $('#empTable').bootstrapTable('refresh', {url: "/emp/list.do"});
+                }
+                $("#addEmp").modal('hide');
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+}
+
+function settingForm() {
+    $("#select2_user").select2({
+        ajax: {
+            url: "user/deptid",//请求的API地址
+            dataType: 'json',//数据类型
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }//返回的结果
+        }
+    });//启动select2
+
+    $("#select2_dept").select2({
+        ajax: {
+            url: "dept/dept",//请求的API地址
+            dataType: 'json',//数据类型
+            /*data: function (params) {
+                return {
+                    name: params.term//此处是最终传递给API的参数
+                }
+            },*/
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }//返回的结果
+        }
+    });//启动select2
+
+    $("#select2_class").select2({
+        ajax: {
+            // url: "dept/dept",//请求的API地址
+            dataType: 'json',//数据类型
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            }//返回的结果
+        }
+    });//启动select2
+
+    $("#select2_role").select2({
+        tags: true,
+        ajax: {
+            url: "role/role",//请求的API地址
+            dataType: 'json',//数据类型
+            processResults: function (data) {
+                var parsed = data;
+                var arr = [];
+                for (var x in parsed) {
+                    arr.push(parsed[x]); //这个应该是个json对象
+                }
+                return {
+                    results: arr
+                };
+            }
+        }
+    }).on("select2:select", function (e) {
+        e.params.data.disabled = true //让此元素之后不能被再选
+    });//启动select2
+
+    $("#addForm").bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        live: 'enabled',
+        fields: {
+            userName: {
+                enabled: true,
+                validators: {
+                    notEmpty: {
+                        message: '姓名不能为空'
+                    }
+                }
+            },
+            userSex: {
+                validators: {
+                    notEmpty: {
+                        message: '性别不能为空'
+                    }
+                }
+            },
+            deptid: {
+                validators: {
+                    notEmpty: {
+                        message: '部门不能为空'
+                    }
+                }
+            },
+            roleid: {
+                validators: {
+                    notEmpty: {
+                        message: '角色不能为空'
+                    }
+                }
+            },
+            creattime: {
+                validators: {
+                    notEmpty: {
+                        message: '入学时间不能为空'
+                    }
+                }
+            }
         }
     });
 }
